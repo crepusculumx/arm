@@ -1,0 +1,20 @@
+<launch>
+
+    <!-- 设置参数 -->
+    <param name="robot_description" textfile="$(find arm)/urdf/arm.urdf"/>
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+    <!-- 启动 rviz -->
+    <node pkg="rviz" type="rviz" name="rviz"/>
+
+    <node pkg="arm" type="arm_controller" name="arm_controller" output="screen"/>
+    <node pkg="arm" type="gamepad_node" name="gamepad_node" output="screen"/>
+
+    <node pkg="joy" type="joy_node" name="joy_node">
+        <param name="dev" type="string" value="/dev/input/js0"/>
+        <param name="deadzone" value="0.12"/>
+    </node>
+    >
+    <!-- rosrun rosserial_python serial_node.py /dev/ttyACM0 -->
+</launch>

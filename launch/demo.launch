@@ -1,0 +1,15 @@
+<launch>
+
+    <!-- 设置参数 -->
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find arm)/urdf/arm.urdf.xacro"/>
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+    <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
+
+    <!-- 启动 rviz -->
+    <node pkg="rviz" type="rviz" name="rviz"/>
+
+    <node pkg="arm" type="arm_controller" name="arm_controller" output="screen"/>
+    <!-- rosrun rosserial_python serial_node.py /dev/ttyACM0 -->
+</launch>
